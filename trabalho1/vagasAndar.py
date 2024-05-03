@@ -86,19 +86,41 @@ def executaAcao(vagasDisponiveis, vagasOculpadas, vagasDisponiveisAndar, vagasOc
                     print("vaga selecionada: ", numAl)
                     oculparVaga(vagasDisponiveis, vagasOculpadas, numAl, andar, vagasDisponiveisAndar, vagasOculpadasAndar)
                     alteraStatus(vagasAndar, numAl)
+
         elif entrada == '2':
-            if not vagasOculpadas:
+            if not vagasOculpadas and (not vagasOculpadasAndar):
                 print("estacionamento vazio\n")
-            else:
+            elif (not vagasOculpadas) and vagasOculpadasAndar:
+                print("caiu nessa condição - estacionamento do primeiro andar está cheio")
+                numAl = geraNumero(vagasOculpadasAndar) #gerar um numero aleatorio entre as vagas oculpadas 
+                print("vaga a ser retirada: ", numAl)
+                liberarVaga(vagasDisponiveis, vagasOculpadas, numAl, 2, vagasDisponiveisAndar, vagasOculpadasAndar)
+                alteraStatus(vagasAndar, numAl)
+            elif vagasOculpadas and (not vagasOculpadasAndar):
+                print("Caiu nessa condição - estacionamento do terreo está cheio")
                 numAl = geraNumero(vagasOculpadas) #gerar um numero aleatorio entre as vagas oculpadas 
                 print("vaga a ser retirada: ", numAl)
-                liberarVaga(vagasDisponiveis, vagasOculpadas, numAl)
+                liberarVaga(vagasDisponiveis, vagasOculpadas, numAl, 1, vagasDisponiveisAndar, vagasOculpadasAndar)
                 alteraStatus(vagas, numAl)
+            else:
+                andar = decideAndar()
+                print("numero sorteado:", andar)
+                if(andar == 1):
+                    numAl = geraNumero(vagasOculpadas) #gerar um numero aleatorio entre as vagas oculpadas 
+                    print("vaga a ser retirada: ", numAl)
+                    liberarVaga(vagasDisponiveis, vagasOculpadas, numAl, andar, vagasDisponiveisAndar, vagasOculpadasAndar)
+                    alteraStatus(vagas, numAl)
+                else:
+                    numAl = geraNumero(vagasOculpadasAndar) #gerar um numero aleatorio entre as vagas oculpadas 
+                    print("vaga a ser retirada: ", numAl)
+                    liberarVaga(vagasDisponiveis, vagasOculpadas, numAl, andar, vagasDisponiveisAndar, vagasOculpadasAndar)
+                    alteraStatus(vagasAndar, numAl)
+
         elif entrada == '3':
             printVagas(vagas, vagasAndar)       
         
         else: 
-            return 
+            return 1
         
         entrada = input("1) Estacionar\n2) Sair da vaga\n3) Mostrar o status atual do estacionamento\n4) Sair\n")
 
