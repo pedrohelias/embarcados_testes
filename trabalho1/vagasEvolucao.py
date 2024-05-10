@@ -24,6 +24,8 @@ def liberarVaga(vagasLivre, vagasOcu, val):
     print("vagas disponiveis: ", vagasLivre)
     print("vagas oculpadas: ", vagasOcu)
 
+
+
 def executaAcao(vagasDisponiveis, vagasOculpadas):
 
     entrada = input("1) Estacionar\n2) Sair da vaga\n3) Mostrar o status atual do estacionamento\n4) Sair\n")

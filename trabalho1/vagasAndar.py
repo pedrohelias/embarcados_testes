@@ -50,6 +50,14 @@ def decideAndar():
     randomNum = random.choice([1, 2])
     return randomNum
 
+def decimal_para_binario(decimal):
+    if decimal < 0 or decimal > 7:
+        return "Número fora do intervalo permitido"
+    
+    binario = bin(decimal)[2:]
+    print(type(binario))
+    return (binario.zfill(3))
+
 
 def executaAcao(vagasDisponiveis, vagasOculpadas, vagasDisponiveisAndar, vagasOculpadasAndar):
 
@@ -65,11 +73,22 @@ def executaAcao(vagasDisponiveis, vagasOculpadas, vagasDisponiveisAndar, vagasOc
                 print("caiu nessa condicao - nao tem vaga no terreo\n")
                 numAl = geraNumero(vagasDisponiveisAndar)
                 print("vaga selecionada: ", numAl)
+                retorno = decimal_para_binario(numAl)
+                digito1, digito2, digito3 = map(int, retorno)
+                print(digito1)
+                print(digito2)
+                print(digito3)
+
                 oculparVaga(vagasDisponiveis, vagasOculpadas, numAl, 2, vagasDisponiveisAndar, vagasOculpadasAndar)
                 alteraStatus(vagasAndar, numAl)
             elif vagasDisponiveis and (not vagasDisponiveisAndar):
                 print("caiu nessa condicao - nao tem vaga no 1º andar\n")
                 numAl = geraNumero(vagasDisponiveis)
+                retorno = decimal_para_binario(numAl)
+                digito1, digito2, digito3 = map(int, retorno)
+                print(digito1)
+                print(digito2)
+                print(digito3)
                 print("vaga selecionada: ", numAl)
                 oculparVaga(vagasDisponiveis, vagasOculpadas, numAl, 1, vagasDisponiveisAndar, vagasOculpadasAndar)
                 alteraStatus(vagas, numAl)
@@ -79,10 +98,20 @@ def executaAcao(vagasDisponiveis, vagasOculpadas, vagasDisponiveisAndar, vagasOc
                 if(andar == 1):
                     numAl = geraNumero(vagasDisponiveis)
                     print("vaga selecionada: ", numAl)
+                    retorno = decimal_para_binario(numAl)
+                    digito1, digito2, digito3 = map(int, retorno)
+                    print(digito1)
+                    print(digito2)
+                    print(digito3)
                     oculparVaga(vagasDisponiveis, vagasOculpadas, numAl, andar, vagasDisponiveisAndar, vagasOculpadasAndar)
                     alteraStatus(vagas, numAl)
                 else:
                     numAl = geraNumero(vagasDisponiveisAndar)
+                    retorno = decimal_para_binario(numAl)
+                    digito1, digito2, digito3 = map(int, retorno)
+                    print(digito1)
+                    print(digito2)
+                    print(digito3)
                     print("vaga selecionada: ", numAl)
                     oculparVaga(vagasDisponiveis, vagasOculpadas, numAl, andar, vagasDisponiveisAndar, vagasOculpadasAndar)
                     alteraStatus(vagasAndar, numAl)
